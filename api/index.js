@@ -2,15 +2,15 @@ module.exports = (req, res) => {
   const { method, url } = req;
   const { name } = req.query;
 
-  if (url === "/") {
+  if (url === "/api") {
     res.status(200).send("Welcome to the Home Page!");
-  } else if (url.startsWith("/greet")) {
+  } else if (url.startsWith("/api/greet")) {
     if (name) {
       res.status(200).send(`Hello, ${name}!`);
     } else {
-      res.status(400).send("Please provide a name in the query, e.g., /greet?name=YourName");
+      res.status(400).send("Please provide a name in the query /api/greet?name=John");
     }
-  } else if (url.startsWith("/about")) {
+  } else if (url.startsWith("/api/about")) {
     res.status(200).send("This is the About Page.");
   } else {
     res.status(404).send("Page not found.");
