@@ -6,10 +6,9 @@ exports.register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     console.log(username, email, password)
-    res.status(200).json({test:true})
-    //const user = new User({ username, email, password });
-   // await user.save();
-   // res.status(201).json({ success: true, message: 'User registered successfully', user });
+    const user = new User({ username, email, password });
+   await user.save();
+   res.status(201).json({ success: true, message: 'User registered successfully', user });
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
   }
