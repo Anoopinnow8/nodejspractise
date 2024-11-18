@@ -1,18 +1,35 @@
-module.exports = (req, res) => {
-  const { method, url } = req;
-  const { name } = req.query;
+const http = require('http');
 
+// Simple handler function
+const handler = (req, res) => {
+  const { url, method } = req;
+  const { name } = new URL(req.url, `http://${req.headers.host}`).searchParams;
+console.log(name,"name");
   if (url === "/api") {
-    res.status(200).send("Welcome to the Home Page!");
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Welcome to the Home Page!");
   } else if (url.startsWith("/api/greet")) {
     if (name) {
-      res.status(200).send(`Hello, ${name}!`);
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end(`Hello, ${name}!`);
     } else {
-      res.status(400).send("Please provide a name in the query /api/greet?name=John");
+      res.writeHead(400, { "Content-Type": "text/plain" });
+      res.end("Please provide a name in the query");
     }
   } else if (url.startsWith("/api/about")) {
-    res.status(200).send("This is the About Page.");
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("This is the About Page.");
   } else {
-    res.status(404).send("Page not found.");
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Page not found.");
   }
 };
+
+// Create an HTTP server
+const server = http.createServer(handler);
+
+// Start the server
+const PORT = 8000;
+server.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
+});

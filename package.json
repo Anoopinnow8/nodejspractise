@@ -1,15 +1,16 @@
 {
   "name": "nodejspractise",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node.js project with serverless support",
   "main": "index.js",
   "engines": {
     "node": "20.x"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vercel:dev": "vercel dev"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,8 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "razorpay": "^2.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
