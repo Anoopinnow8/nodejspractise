@@ -7,7 +7,7 @@ const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 
-// connectDB();
+ connectDB();
 
 app.use(cors()); 
 app.use(express.json()); 
