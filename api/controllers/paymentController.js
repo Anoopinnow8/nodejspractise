@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_tJUtJdrFjgX8wI',
-     key_secret: 'A3Mr4psFqGgdCrieMGyGbWpW'
+     key_secret: 'edtghu6tju7koi68uko89'
 })
  
 exports.order = async (req, res) => {
@@ -46,7 +46,7 @@ exports.order = async (req, res) => {
 
 
 exports.verify = (req, res) => {
-  const secret_key = 'A3Mr4psFqGgdCrieMGyGbWpW';
+  const secret_key = 'edtghu6tju7koi68uko89';
   const { signature, orderId, paymentId } = req.body.orderDetails;
   if (!signature) {
     return res.status(400).send('Missing signature');
